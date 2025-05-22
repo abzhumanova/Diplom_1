@@ -3,32 +3,46 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import praktikum.Bun;
 import static org.junit.Assert.assertEquals;
+
 @RunWith(Parameterized.class)
 public class BunTests {
     private String name;
     private float price;
+
     public BunTests(String name, float price) {
         this.name = name;
         this.price = price;
     }
-    @Parameterized.Parameters(name = "{0} за {1} денег" )
-    public static Object[][] getParameters() {
+
+    @Parameterized.Parameters(name = "{0} - проверка имени")
+    public static Object[][] getNameParameters() {
         return new Object[][] {
-                {"black bun", 100.0F},
-                {"white bun", 200.0F},
-                {"red bun", 300.0F}
+                {"black bun", "black bun"},
+                {"white bun", "white bun"},
+                {"red bun", "red bun"}
         };
     }
+
+    @Parameterized.Parameters(name = "{0} - проверка цены")
+    public static Object[][] getPriceParameters() {
+        return new Object[][] {
+                {"black bun", 100.0f},
+                {"white bun", 200.0f},
+                {"red bun", 300.0f}
+        };
+    }
+
     @Test
     public void getNameTest() {
         Bun bun = new Bun(name, price);
         String actualName = bun.getName();
-        assertEquals("Ожидалось имя булочки: " + name + ", но было получено: " + actualName, name, actualName);
+        assertEquals("Неверное имя булочки", name, actualName);
     }
+
     @Test
     public void getPriceTest() {
         Bun bun = new Bun(name, price);
         float actualPrice = bun.getPrice();
-        assertEquals("Ожидалось цена булочки: " + price + ", но было получено: " + actualPrice, price, actualPrice, 0);
+        assertEquals("Неверная цена булочки", price, actualPrice, 0);
     }
 }

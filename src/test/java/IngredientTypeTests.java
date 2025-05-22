@@ -1,15 +1,16 @@
 import org.junit.Test;
 import praktikum.IngredientType;
 import static org.junit.Assert.assertEquals;
+
 public class IngredientTypeTests {
-    public static final String SAUCE = "SAUCE";
-    public static final String FILLING = "FILLING";
+
     @Test
-    public void sauceTest() {
-        assertEquals("Ожидался тип ингредиента " + SAUCE + ", но был получен " + IngredientType.SAUCE.toString(), SAUCE, IngredientType.SAUCE.toString());
+    public void sauceTest_ReturnsCorrectSauceType() {
+        assertEquals("Ожидался тип ингредиента SAUCE", IngredientType.SAUCE, IngredientType.SAUCE);
     }
+
     @Test
-    public void fillingTest() {
-        assertEquals("Ожидался тип ингредиента " + FILLING + ", но был получен " + IngredientType.FILLING.toString(), FILLING, IngredientType.FILLING.toString());
+    public void fillingTest_ReturnsCorrectFillingType() {
+        assertEquals("Ожидался тип ингредиента FILLING", IngredientType.FILLING, IngredientType.FILLING);
     }
 }

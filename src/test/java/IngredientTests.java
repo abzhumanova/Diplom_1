@@ -3,18 +3,23 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
+
 import static org.junit.Assert.assertEquals;
+
 @RunWith(Parameterized.class)
 public class IngredientTests {
+
     private IngredientType type;
     private String name;
     private float price;
+
     public IngredientTests(IngredientType type, String name, float price) {
         this.type = type;
         this.name = name;
         this.price = price;
     }
-    @Parameterized.Parameters(name = "Ингридиент {1} типа {0} за {2} денег" )
+
+    @Parameterized.Parameters(name = "Ингредиент {1} типа {0} за {2} денег")
     public static Object[][] getParameters() {
         return new Object[][] {
                 {IngredientType.FILLING, "hot sauce", 100.0F},
@@ -25,22 +30,25 @@ public class IngredientTests {
                 {IngredientType.SAUCE, "sausage", 300.0F},
         };
     }
+
     @Test
-    public void getPriceTest() {
+    public void getPriceTest_CorrectPriceReturned() {
         Ingredient ingredient = new Ingredient(type, name, price);
         float actualPrice = ingredient.getPrice();
-        assertEquals("Ожидалось цена ингредиента: " + price + ", но была получено: " + actualPrice, price, actualPrice, 0);
+        assertEquals("Цена ингредиента должна быть равна " + price, price, actualPrice, 0);
     }
+
     @Test
-    public void getNameTest() {
+    public void getNameTest_CorrectNameReturned() {
         Ingredient ingredient = new Ingredient(type, name, price);
         String actualName = ingredient.getName();
-        assertEquals("Ожидалось имя ингредиента: " + name + ", но было получено: " + actualName, name, actualName);
+        assertEquals("Имя ингредиента должно быть равно " + name, name, actualName);
     }
+
     @Test
-    public void getIngredientTypeTest() {
+    public void getIngredientTypeTest_CorrectTypeReturned() {
         Ingredient ingredient = new Ingredient(type, name, price);
         IngredientType actualType = ingredient.getType();
-        assertEquals("Ожидался ингредиент типа: " + type + ", но был получен: " + actualType, type, actualType);
+        assertEquals("Тип ингредиента должен быть равен " + type, type, actualType);
     }
 }
