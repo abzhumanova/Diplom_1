@@ -5,5 +5,8 @@
 /mavenHomeManager.xml
 /.idea/
 /target/*
+/target/maven-archiver/
+/target/maven-status/
+/target/surefire-reports/
 !target/site/
 /praktikum.iml
